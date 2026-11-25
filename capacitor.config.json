@@ -1,0 +1,12 @@
+{
+  "appId": "com.veyronix.app",
+  "appName": "Veyronix",
+  "webDir": "public",
+  "server": {
+    "url": "https://example.invalid",
+    "cleartext": false,
+    "allowNavigation": [
+      "example.invalid"
+    ]
+  }
+}

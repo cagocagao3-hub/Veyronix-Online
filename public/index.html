@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#11121b">
+  <meta name="description" content="Veyronix — seu espaço para comunidades e conversas.">
+  <title>Veyronix — Community Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main id="authView" class="auth-layout">
+    <section class="brand-panel">
+      <a class="brand" href="#"><span class="brand-mark">V</span><span>VEYRONIX<span class="brand-dot">.</span></span></a>
+      <div class="brand-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> COMMUNITY PLATFORM</div>
+        <h1>Seu mundo.<br><span>Suas conexões.</span></h1>
+        <p>Um espaço para reunir pessoas, criar comunidades e fazer boas conversas acontecerem.</p>
+      </div>
+      <div class="brand-orbit orbit-a"></div><div class="brand-orbit orbit-b"></div>
+      <div class="brand-footer"><span class="status-dot"></span> Um novo espaço está sendo construído <span class="footer-version">V 0.3</span></div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-topline"><span class="secure-label"><i data-lucide="shield-check"></i> CONEXÃO PROTEGIDA</span><span class="top-help">Já tem uma conta? <button class="text-button" data-view="login">Entrar</button></span></div>
+      <div class="auth-card">
+        <div class="mobile-brand"><span class="brand-mark">V</span><span>VEYRONIX<span class="brand-dot">.</span></span></div>
+        <div class="auth-heading">
+          <div class="mini-label" id="authKicker">COMECE POR AQUI</div>
+          <h2 id="authTitle">Crie sua conta</h2>
+          <p id="authSubtitle">Entre para fazer parte de novas comunidades.</p>
+        </div>
+
+        <form id="registerForm" class="auth-form">
+          <label>Nome de usuário<input name="username" autocomplete="username" placeholder="ex: pedro_01" minlength="3" maxlength="24" pattern="[a-z0-9_.]{3,24}" autocapitalize="none" spellcheck="false" required><small class="field-hint">Único • minúsculo • letras, números, _ e .</small></label>
+          <label>E-mail<input name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required></label>
+          <label>Senha<div class="password-wrap"><input name="password" type="password" autocomplete="new-password" placeholder="Mínimo de 8 caracteres" minlength="8" required><button type="button" class="eye-button" aria-label="Mostrar senha"><i data-lucide="eye"></i></button></div></label>
+          <div class="password-hint"><i data-lucide="lock-keyhole"></i> Sua senha será armazenada com hash seguro.</div>
+          <button class="primary-button" type="submit"><span>Criar minha conta</span><i data-lucide="arrow-up-right"></i></button>
+          <p class="form-switch">Já possui uma conta? <button type="button" class="text-button" data-view="login">Fazer login</button></p>
+        </form>
+
+        <form id="verifyForm" class="auth-form hidden">
+          <div class="verify-icon"><i data-lucide="mail-check"></i></div>
+          <p class="verify-copy">Enviamos um código de 6 dígitos para <strong id="verifyEmailLabel"></strong>. Confira também a pasta de spam.</p>
+          <label>Código de confirmação<input name="code" class="code-input" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" required></label>
+          <button class="primary-button" type="submit"><span>Confirmar e criar conta</span><i data-lucide="arrow-up-right"></i></button>
+          <button type="button" class="subtle-button" id="backToRegister">Voltar ao cadastro</button>
+        </form>
+
+        <form id="loginForm" class="auth-form hidden">
+          <label>Usuário ou e-mail<input name="identity" autocomplete="username" placeholder="Seu usuário ou e-mail" required></label>
+          <label>Senha<div class="password-wrap"><input name="password" type="password" autocomplete="current-password" placeholder="Sua senha" required><button type="button" class="eye-button" aria-label="Mostrar senha"><i data-lucide="eye"></i></button></div></label>
+          <div class="form-row-end"><button type="button" class="text-button" data-view="forgot">Esqueci minha senha</button></div>
+          <button class="primary-button" type="submit"><span>Entrar no Veyronix</span><i data-lucide="arrow-up-right"></i></button>
+          <p class="form-switch">Ainda não tem conta? <button type="button" class="text-button" data-view="register">Criar conta</button></p>
+        </form>
+
+        <form id="forgotForm" class="auth-form hidden">
+          <label>E-mail da sua conta<input name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required></label>
+          <button class="primary-button" type="submit"><span>Enviar código</span><i data-lucide="send"></i></button>
+          <button type="button" class="subtle-button" data-view="reset">Já tenho um código</button>
+          <p class="form-switch"><button type="button" class="text-button" data-view="login">Voltar ao login</button></p>
+        </form>
+
+        <form id="resetForm" class="auth-form hidden">
+          <label>E-mail<input name="email" type="email" required placeholder="voce@exemplo.com"></label>
+          <label>Código de 6 dígitos<input name="code" inputmode="numeric" maxlength="6" required placeholder="000000"></label>
+          <label>Nova senha<input name="password" type="password" minlength="8" required placeholder="Mínimo de 8 caracteres"></label>
+          <button class="primary-button" type="submit"><span>Salvar nova senha</span><i data-lucide="check"></i></button>
+          <p class="form-switch"><button type="button" class="text-button" data-view="login">Voltar ao login</button></p>
+        </form>
+        <div id="authMessage" class="message-box hidden" role="status"></div>
+        <div class="auth-legal">Ao continuar, você concorda em usar o Veyronix de forma respeitosa e segura.</div>
+      </div>
+      <div class="auth-bottom"><span>© 2026 VEYRONIX</span><span>FEITO PARA CONECTAR</span></div>
+    </section>
+  </main>
+
+  <main id="appView" class="app-shell hidden">
+    <aside class="server-rail">
+      <div class="rail-brand" title="Veyronix">V</div>
+      <div class="rail-divider"></div>
+      <button class="server-icon active" id="railHomeButton" title="Início" aria-label="Início"><i data-lucide="home"></i></button>
+      <button class="server-icon" id="railFriendsButton" title="Mensagens e amigos" aria-label="Mensagens e amigos"><i data-lucide="message-circle"></i></button>
+      <div id="railDynamicList" class="rail-dynamic-list" aria-label="Seus servidores"></div>
+      <button class="server-icon add-server" title="Adicionar servidor" aria-label="Adicionar servidor"><i data-lucide="plus"></i></button>
+      <div class="rail-spacer"></div>
+      <button class="server-icon" title="Configurações"><i data-lucide="settings"></i></button>
+      <div class="rail-avatar" id="railAvatar">V</div>
+    </aside>
+
+    <aside class="channel-sidebar">
+      <div class="workspace-head"><div><span class="workspace-overline">SEU ESPAÇO</span><strong>Veyronix</strong></div><button class="icon-button" title="Opções"><i data-lucide="chevron-down"></i></button></div>
+      <div class="sidebar-search"><i data-lucide="search"></i><span>Buscar conversas</span><kbd>⌘ K</kbd></div>
+      <div class="side-section"><div class="section-label">ESPAÇO PESSOAL</div>
+        <button class="nav-item selected" id="personalMessagesNav"><i data-lucide="message-circle"></i> Mensagens <span class="nav-count">0</span></button>
+        <button class="nav-item" id="friendsNav"><i data-lucide="users"></i> Amigos</button>
+        <button class="nav-item" id="inboxNav"><i data-lucide="inbox"></i> Caixa de entrada</button>
+      </div>
+      <div class="side-section servers-section"><div class="section-heading"><span class="section-label">SEUS SERVIDORES</span><button class="tiny-icon" title="Adicionar servidor"><i data-lucide="plus"></i></button></div>
+        <div class="empty-server" id="emptyServers"><span class="empty-server-icon"><i data-lucide="layers-3"></i></span><strong>Seu espaço está começando</strong><p>Crie um servidor ou entre usando um convite.</p></div><div id="communityList" class="community-list"></div>
+      </div>
+      <div class="profile-dock"><div class="user-avatar" id="dockAvatar">V</div><div class="profile-meta"><strong id="dockName">Usuário</strong><span>Conta conectada</span></div><button class="icon-button" id="settingsButton" title="Configurações"><i data-lucide="settings"></i></button><button class="icon-button" id="logoutButton" title="Sair"><i data-lucide="log-out"></i></button></div>
+    </aside>
+
+    <section class="conversation-area">
+      <header class="conversation-header"><div class="header-title"><span class="header-icon"><i data-lucide="message-circle"></i></span><div><strong>Mensagens</strong><span>Seu ponto de encontro</span></div></div><div class="header-actions"><button class="icon-button" id="notificationsButton" title="Solicitações e notificações"><i data-lucide="bell"></i></button><button class="icon-button" title="Ajuda"><i data-lucide="circle-help"></i></button></div></header>
+      <div class="welcome-content" id="welcomeContent">
+        <div class="welcome-art"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-center"><span>V</span></div><div class="art-spark spark-one">✦</div><div class="art-spark spark-two">✧</div></div>
+        <div class="welcome-eyebrow"><span class="status-dot"></span> SUA CONTA ESTÁ PRONTA</div>
+        <h1>Bem-vindo ao <span>Veyronix</span>, <b id="welcomeName">membro</b>.</h1>
+        <p>Crie seu servidor, organize canais e comece a conversar com sua comunidade.</p>
+        <div class="welcome-actions"><button class="primary-button compact" id="createServerButton"><i data-lucide="plus"></i> Criar servidor</button><button class="secondary-button" id="findFriendsButton"><i data-lucide="users"></i> Encontrar amigos</button></div>
+        <div class="feature-preview"><div><i data-lucide="messages-square"></i><strong>Conversas</strong><span>Mensagens em tempo real</span></div><div><i data-lucide="audio-lines"></i><strong>Voz e vídeo</strong><span>Encontre sua comunidade</span></div><div><i data-lucide="monitor-up"></i><strong>Compartilhar tela</strong><span>Mostre o que está fazendo</span></div></div>
+        <div class="coming-note" id="communityHint"><i data-lucide="shield-check"></i> Comunidades com canais privados para membros e mensagens salvas no servidor.</div>
+      </div>
+      <section id="chatWorkspace" class="chat-workspace hidden">
+        <header class="chat-topbar"><div class="chat-top-title"><button id="mobileChannelsButton" class="icon-button mobile-only" title="Canais"><i data-lucide="menu"></i></button><span class="chat-hash">#</span><strong id="activeChannelName">geral</strong><small id="activeCommunityName">Servidor</small></div><div class="chat-top-actions"><button id="openMembersButton" class="icon-button" title="Ver membros do servidor"><i data-lucide="search"></i></button><button id="createCategoryButton" class="secondary-button compact"><i data-lucide="folder-plus"></i><span>Categoria</span></button><button id="createChannelButton" class="secondary-button compact"><i data-lucide="plus"></i><span>Canal</span></button><button id="inviteActiveButton" class="secondary-button compact"><i data-lucide="link"></i><span>Convidar</span></button><button id="serverSettingsButton" class="icon-button" title="Configurações do servidor"><i data-lucide="settings-2"></i></button></div></header>
+        <div id="messageList" class="message-list"><div class="chat-empty">As conversas deste canal aparecerão aqui.</div></div>
+        <form id="messageForm" class="message-composer"><input id="messageInput" maxlength="1500" placeholder="Enviar mensagem..." autocomplete="off"><button type="submit" aria-label="Enviar mensagem"><i data-lucide="send"></i></button></form>
+      </section>
+    </section>
+
+    <aside class="member-sidebar"><div class="member-head"><span>SEU PERFIL</span><button class="icon-button" title="Perfil"><i data-lucide="more-horizontal"></i></button></div><div class="profile-card"><div class="profile-cover"></div><div class="profile-large-avatar" id="largeAvatar">V</div><strong id="profileName">Usuário</strong><span class="online-label"><i></i> Online</span><div class="profile-divider"></div><div class="profile-detail"><span>E-MAIL</span><strong id="profileEmail">—</strong></div><div class="profile-detail"><span>STATUS</span><strong>Conta ativa</strong></div></div><div class="member-tip"><i data-lucide="sparkles"></i><div><strong>Seu perfil, seu espaço</strong><p>As opções de personalização chegarão em uma próxima atualização.</p></div></div></aside>
+  </main>
+
+  <section id="settingsOverlay" class="settings-overlay hidden" aria-hidden="true">
+    <div class="settings-window">
+      <aside class="settings-nav">
+        <div class="settings-brand"><span class="brand-mark">V</span><div><strong>Configurações</strong><small>VEYRONIX ACCOUNT</small></div></div>
+        <button class="settings-tab active" data-settings="profile"><i data-lucide="user-round"></i> Perfil</button>
+        <button class="settings-tab" data-settings="account"><i data-lucide="id-card"></i> Minha conta</button>
+        <button class="settings-tab" data-settings="privacy"><i data-lucide="shield-check"></i> Dados e privacidade</button>
+        <button class="settings-tab" data-settings="security"><i data-lucide="key-round"></i> Senha e segurança</button>
+        <button class="settings-tab" data-settings="sessions"><i data-lucide="monitor-smartphone"></i> Dispositivos</button>
+        <div class="settings-nav-foot"><span class="status-dot"></span> Veyronix • versão 0.3</div>
+      </aside>
+      <div class="settings-content">
+        <header class="settings-header"><div><span class="mini-label">CONTA</span><h2 id="settingsTitle">Perfil</h2><p id="settingsSubtitle">Personalize como as pessoas veem você.</p></div><button class="settings-close" id="closeSettings" aria-label="Fechar"><i data-lucide="x"></i></button></header>
+        <div id="settingsProfilePanel" class="settings-panel">
+          <div class="profile-editor-grid">
+            <form id="profileForm" class="profile-editor-form">
+              <label>Foto do perfil <span class="field-hint">PNG, JPG, WEBP ou GIF • até 10 MB</span><input id="avatarFile" type="file" accept="image/png,image/jpeg,image/webp" class="file-input"><button type="button" class="subtle-button remove-media" id="removeAvatar">Remover foto do perfil</button></label>
+              <label>Banner do perfil <span class="field-hint">Imagem ou GIF animado • até 10 MB</span><input id="bannerFile" type="file" accept="image/png,image/jpeg,image/webp" class="file-input"><button type="button" class="subtle-button remove-media" id="removeBanner">Remover banner</button></label>
+              <label>Nome de usuário <span class="field-hint">Único e usado para encontrar sua conta</span><div class="username-field"><span>@</span><input id="profileUsername" minlength="3" maxlength="24" pattern="[a-z0-9_.]{3,24}" autocapitalize="none" spellcheck="false" required></div></label>
+              <label>Nome principal <span class="field-hint">Até 20 caracteres</span><input id="displayName" maxlength="20" placeholder="Como quer ser chamado"></label>
+              <label>Sobre mim<textarea id="profileBio" maxlength="190" rows="4" placeholder="Conte um pouco sobre você..."></textarea><span class="field-hint">Até 190 caracteres</span></label>
+              <button class="primary-button" type="submit"><span>Salvar alterações</span><i data-lucide="check"></i></button>
+            </form>
+            <div class="profile-preview-card"><div class="preview-label">PRÉVIA DO PERFIL</div><div class="preview-banner" id="previewBanner"></div><div class="preview-avatar" id="previewAvatar">V</div><div class="preview-info"><strong class="preview-name-line"><span id="previewName">Seu nome</span><span id="previewBetaTag" class="profile-beta-tag beta-green-tag hidden">BETA</span></strong><span id="previewUsername">@usuario</span><p id="previewBio">Sua descrição aparecerá aqui.</p></div></div>
+          </div>
+        </div>
+        <div id="settingsInfoPanel" class="settings-panel hidden">
+          <section id="accountSettingsPanel" class="settings-subpanel hidden"><div class="settings-card"><span class="mini-label">IDENTIDADE DA CONTA</span><h3>Informações da conta</h3><p>Gerencie seus dados de acesso e encerre sua sessão com segurança.</p><div class="settings-row"><div><strong>E-mail</strong><small id="accountEmail">—</small></div><span class="settings-status">Confirmado</span></div><div class="settings-row"><div><strong>Nome de usuário</strong><small id="accountUsername">@usuario</small></div><button class="secondary-button compact" id="accountEditProfile">Editar perfil</button></div><button class="danger-button" id="settingsLogout"><i data-lucide="log-out"></i> Sair da conta</button></div></section>
+          <section id="privacySettingsPanel" class="settings-subpanel hidden"><div class="settings-card"><span class="mini-label">CONTROLE DE VISIBILIDADE</span><h3>Dados e privacidade</h3><p>Escolha como outras pessoas podem encontrar e visualizar seu perfil.</p><label class="toggle-row"><span><strong>Perfil público</strong><small>Permite que outras pessoas vejam seu perfil.</small></span><input type="checkbox" id="privacyProfilePublic"></label><label class="toggle-row"><span><strong>Receber solicitações</strong><small>Permite que outras contas enviem pedidos de amizade.</small></span><input type="checkbox" id="privacyFriendRequests"></label><button class="primary-button compact" id="savePrivacy">Salvar preferências</button><div class="settings-divider"></div><h3>Seus dados</h3><p>Baixe uma cópia dos dados básicos da sua conta e conversas.</p><button class="secondary-button" id="exportData"><i data-lucide="download"></i> Exportar meus dados</button><div class="settings-divider"></div><h3>Usuários bloqueados</h3><div id="blockedUsersList" class="settings-list"><p class="settings-muted">Carregando...</p></div></div></section>
+          <section id="securitySettingsPanel" class="settings-subpanel hidden"><form id="changePasswordForm" class="settings-card"><span class="mini-label">PROTEÇÃO DA CONTA</span><h3>Senha e segurança</h3><p>Use uma senha forte e não compartilhe seu acesso.</p><label class="settings-field">Senha atual<input type="password" id="currentPassword" autocomplete="current-password" required></label><label class="settings-field">Nova senha<input type="password" id="newPassword" minlength="8" maxlength="128" autocomplete="new-password" required></label><label class="settings-field">Confirmar nova senha<input type="password" id="confirmPassword" minlength="8" maxlength="128" autocomplete="new-password" required></label><button class="primary-button compact" type="submit">Atualizar senha</button></form></section>
+          <section id="sessionsSettingsPanel" class="settings-subpanel hidden"><div class="settings-card"><span class="mini-label">ACESSOS RECENTES</span><h3>Dispositivos</h3><p>Confira as sessões vinculadas à sua conta. Você pode encerrar acessos que não reconhece.</p><div id="devicesList" class="settings-list"><p class="settings-muted">Carregando...</p></div><button class="danger-button" id="logoutAllDevices"><i data-lucide="log-out"></i> Encerrar outros dispositivos</button></div></section>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="publicProfileOverlay" class="profile-modal-overlay hidden" aria-hidden="true">
+    <article class="public-profile-modal" role="dialog" aria-modal="true" aria-labelledby="publicProfileName">
+      <button class="profile-modal-close" id="closePublicProfile" aria-label="Fechar"><i data-lucide="x"></i></button>
+      <div class="public-profile-banner" id="publicProfileBanner"></div>
+      <div class="public-profile-main">
+        <div class="public-profile-avatar" id="publicProfileAvatar">V</div>
+        <div class="public-profile-heading"><h2 class="public-profile-name-line"><span id="publicProfileName">Perfil</span><span id="publicProfileBetaTag" class="profile-beta-tag beta-green-tag hidden">BETA</span></h2><span id="publicProfileUsername">@usuario</span></div>
+        <div class="public-profile-bio"><span>SOBRE MIM</span><p id="publicProfileBio">Este usuário ainda não adicionou uma descrição.</p></div>
+        <div class="public-profile-meta"><span>NO VEYRONIX DESDE</span><strong id="publicProfileSince">—</strong></div><div id="serverProfileRoles" class="server-profile-roles hidden"><span>CARGOS NESTE SERVIDOR</span><div id="serverProfileRoleList"></div></div><div class="public-profile-actions"><button id="publicProfileMessage" class="primary-button compact">Enviar mensagem</button><button id="manageServerRoles" class="secondary-button compact role-plus-only hidden" title="Gerenciar cargos" aria-label="Gerenciar cargos"><i data-lucide="plus"></i></button><button id="publicProfileBlock" class="secondary-button compact">Bloquear</button></div>
+      </div>
+    </article>
+  </section>
+  <section id="membersOverlay" class="profile-modal-overlay hidden" aria-hidden="true">
+    <article class="members-panel" role="dialog" aria-modal="true" aria-labelledby="membersTitle">
+      <header><div><span class="mini-label">COMUNIDADE</span><h2 id="membersTitle">Membros do servidor</h2><p id="membersSubtitle">Pessoas organizadas por cargos.</p></div><button class="profile-modal-close" id="closeMembers" aria-label="Fechar"><i data-lucide="x"></i></button></header>
+      <div class="members-tools"><label class="members-filter"><i data-lucide="search"></i><input id="membersFilter" placeholder="Buscar membro..." autocomplete="off"></label><button id="createServerRole" class="secondary-button compact hidden"><i data-lucide="badge-plus"></i> Novo cargo</button></div>
+      <div id="membersList" class="members-list"><p class="social-muted">Carregando membros...</p></div>
+    </article>
+  </section>
+  <section id="actionDialog" class="action-dialog-overlay hidden" aria-hidden="true">
+    <form id="actionDialogForm" class="action-dialog" role="dialog" aria-modal="true">
+      <div class="action-dialog-icon"><i data-lucide="sparkles"></i></div><h2 id="actionDialogTitle">Continuar</h2><p id="actionDialogDescription"></p>
+      <label id="actionDialogLabel" class="action-dialog-label"><span id="actionDialogLabelText">Nome</span><input id="actionDialogInput" maxlength="64" autocomplete="off"><select id="actionDialogChannelKind" class="action-dialog-channel-kind hidden" aria-label="Tipo de canal"><option value="text">Canal de texto</option><option value="voice">Canal de voz</option></select></label>
+      <div class="action-dialog-buttons"><button type="button" class="secondary-button" id="actionDialogCancel">Cancelar</button><button type="submit" class="primary-button compact" id="actionDialogConfirm">Continuar</button></div>
+    </form>
+  </section>
+
+
+  <section id="serverHubOverlay" class="profile-modal-overlay hidden" aria-hidden="true">
+    <article class="social-panel server-hub" role="dialog" aria-modal="true">
+      <header><div><span class="mini-label">COMUNIDADES</span><h2>Seu próximo espaço começa aqui</h2><p>Crie uma comunidade ou entre usando um convite.</p></div><button class="profile-modal-close" id="closeServerHub"><i data-lucide="x"></i></button></header>
+      <div class="server-hub-section"><h3><i data-lucide="plus-circle"></i> Criar servidor</h3><label class="server-icon-picker">Ícone do servidor <span class="field-hint">200 × 200 até 2500 × 2500 • até 8 MB • PNG/JPG/WEBP</span><span class="server-icon-preview" id="newServerIconPreview">V</span><span class="field-hint">A imagem será exibida em formato circular e usada como fundo visual do servidor.</span><input id="newServerIcon" type="file" accept="image/png,image/jpeg,image/webp"></label><label>Nome do servidor<input id="newServerName" maxlength="32" placeholder="Ex.: Minha comunidade"></label><label>Descrição <span class="field-hint">Opcional</span><textarea id="newServerDescription" maxlength="160" rows="2" placeholder="Sobre o que é sua comunidade?"></textarea></label><button id="confirmCreateServer" class="primary-button">Criar servidor</button></div>
+      <div class="server-hub-divider"><span>OU</span></div>
+      <div class="server-hub-section"><h3><i data-lucide="log-in"></i> Entrar em um Servidor</h3><label>Código de convite<input id="serverInviteCode" maxlength="16" placeholder="Cole o código aqui" autocomplete="off"></label><button id="confirmJoinServer" class="secondary-button">Entrar em servidor</button></div>
+    </article>
+  </section>
+  <section id="serverSettingsOverlay" class="profile-modal-overlay hidden" aria-hidden="true">
+    <article class="social-panel server-settings-panel" role="dialog" aria-modal="true">
+      <header><div><span class="mini-label">GERENCIAMENTO</span><h2>Configurações do servidor</h2><p>Personalize o espaço e organize sua comunidade.</p></div><button class="profile-modal-close" id="closeServerSettings"><i data-lucide="x"></i></button></header>
+      <div class="server-settings-section"><h3>Identidade</h3><label>Nome do servidor<input id="editServerName" maxlength="32"></label><label>Descrição<textarea id="editServerDescription" maxlength="160" rows="2"></textarea></label><label class="server-icon-picker">Ícone do servidor <span class="field-hint">200 × 200 até 2500 × 2500 • até 8 MB • PNG/JPG/WEBP</span><span class="server-icon-preview" id="editServerIconPreview">V</span><span class="field-hint">A mesma imagem aparece no ícone e no fundo do servidor.</span><input id="editServerIcon" type="file" accept="image/png,image/jpeg,image/webp"></label><div class="server-settings-actions"><button class="secondary-button" id="removeServerIcon">Remover ícone</button><button class="primary-button compact" id="saveServerSettings">Salvar alterações</button></div></div>
+      <div class="server-settings-section"><h3>Estrutura do servidor</h3><div id="serverStructureList"></div><div class="server-settings-actions"><button class="secondary-button" id="settingsCreateCategory"><i data-lucide="folder-plus"></i> Categoria</button><button class="secondary-button" id="settingsCreateChannel"><i data-lucide="plus"></i> Canal</button></div><div class="role-create-form"><label>Novo cargo<input id="settingsRoleName" maxlength="32" placeholder="Ex.: Moderador"></label><label>Cor<input id="settingsRoleColor" type="color" value="#9b8cff" aria-label="Cor do novo cargo"></label><button class="primary-button compact" id="settingsCreateRole"><i data-lucide="badge-plus"></i> Criar cargo</button></div></div>
+      <div class="server-settings-section"><h3>Permissões dos canais</h3><p class="field-hint">Selecione os cargos que podem visualizar e enviar mensagens. Lista vazia significa acesso a todos os membros.</p><div id="channelPermissionEditor"></div></div>
+      <div class="server-settings-danger" id="serverDeleteSection"><div><strong>Excluir servidor</strong><span>Remove o servidor, canais, mensagens e membros. Esta ação não pode ser desfeita.</span></div><button class="danger-button" id="deleteServerButton">Excluir servidor</button></div>
+    </article>
+  </section>
+  <section id="friendsOverlay" class="profile-modal-overlay hidden" aria-hidden="true">
+    <article class="social-panel" role="dialog" aria-modal="true">
+      <header><div><span class="mini-label">SOCIAL VEYRONIX</span><h2>Encontrar amigos</h2><p>Pesquise pelo nome de usuário completo.</p></div><button class="profile-modal-close" id="closeFriends"><i data-lucide="x"></i></button></header>
+      <div class="social-search-heading"><strong>Adicionar pessoas</strong><span>Use o @usuário completo. A busca não mostra resultados parciais.</span></div><form id="friendSearchForm" class="friend-search"><span>@</span><input id="friendSearchInput" minlength="3" maxlength="24" placeholder="nome_de_usuario" autocomplete="off" autocapitalize="none" spellcheck="false"><button class="primary-button compact">Pesquisar</button></form>
+      <div id="friendSearchResult" class="social-results"><p class="social-muted">Pesquise alguém para enviar uma solicitação.</p></div>
+      <nav class="social-tabs"><button data-friend-tab="friends">Amigos</button><button data-friend-tab="incoming" class="active">Recebidas</button><button data-friend-tab="outgoing">Enviadas</button></nav>
+      <div id="friendRequestsList" class="social-results"></div>
+    </article>
+  </section>
+  <section id="voiceJoinOverlay" class="voice-overlay hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <article class="voice-join-card">
+      <button type="button" id="voiceJoinClose" class="voice-close" aria-label="Fechar"><i data-lucide="x"></i></button>
+      <span class="voice-join-icon"><i data-lucide="headphones"></i></span>
+      <small>CANAL DE VOZ</small>
+      <h2 id="voiceJoinTitle">Conectar ao canal?</h2>
+      <p>Você entrará com seu microfone desligado inicialmente. Poderá ativá-lo quando estiver pronto.</p>
+      <div class="voice-join-actions"><button type="button" id="voiceJoinCancel" class="secondary-button">Cancelar</button><button type="button" id="voiceJoinConfirm" class="primary-button"><i data-lucide="phone"></i> Conectar</button></div>
+    </article>
+  </section>
+  <section id="dmOverlay" class="profile-modal-overlay hidden" aria-hidden="true">
+    <article class="dm-panel" role="dialog" aria-modal="true">
+      <header class="dm-header"><div><strong id="dmFriendName">Conversa</strong><span id="dmFriendUsername"></span></div><button class="profile-modal-close" id="closeDm"><i data-lucide="x"></i></button></header>
+      <div id="dmMessages" class="dm-messages"></div>
+      <div class="dm-tools"><button type="button" id="dmAttach" title="Enviar arquivo"><i data-lucide="paperclip"></i></button><input id="dmFile" type="file" accept="image/*,audio/webm,audio/ogg,audio/mp4,audio/mpeg,video/mp4,video/webm,video/quicktime,.pdf,.txt,.csv,.zip,.doc,.docx,.xls,.xlsx" hidden><button type="button" id="dmRecord" title="Gravar áudio"><i data-lucide="mic"></i></button><span id="dmRecordStatus"></span></div>
+      <form id="dmForm" class="dm-composer"><textarea id="dmInput" rows="1" maxlength="2000" placeholder="Mensagem privada..."></textarea><button class="primary-button compact" aria-label="Enviar"><i data-lucide="send"></i></button></form>
+    </article>
+  </section>
+  <section id="dmImageViewer" class="dm-image-viewer hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <button type="button" id="closeDmImage" aria-label="Fechar imagem"><i data-lucide="x"></i></button>
+    <img id="dmImageFull" alt="Imagem ampliada">
+    <a id="dmImageDownload" download="imagem-veyronix.png"><i data-lucide="download"></i> Baixar imagem</a>
+  </section>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js" defer></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</body>
+</html>

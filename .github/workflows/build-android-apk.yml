@@ -1,0 +1,75 @@
+name: Build Veyronix Android APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar pacotes do Android SDK
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Configurar endereço HTTPS do servidor
+        env:
+          VEYRONIX_SERVER_URL: ${{ vars.VEYRONIX_SERVER_URL }}
+        run: npm run android:config
+
+      - name: Criar projeto Android e sincronizar Capacitor
+        run: |
+          npx cap add android
+          npx cap sync android
+
+      - name: Adicionar permissões Android básicas
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('android/app/src/main/AndroidManifest.xml')
+          s = p.read_text()
+          permissions = [
+            'android.permission.INTERNET',
+            'android.permission.RECORD_AUDIO',
+            'android.permission.MODIFY_AUDIO_SETTINGS',
+            'android.permission.CAMERA',
+            'android.permission.POST_NOTIFICATIONS',
+            'android.permission.WAKE_LOCK'
+          ]
+          lines = ''.join(f'    <uses-permission android:name="{x}" />\n' for x in permissions if f'android:name="{x}"' not in s)
+          s = s.replace('<application', lines + '    <application', 1)
+          p.write_text(s)
+          PY
+
+      - name: Gerar APK de teste
+        run: |
+          cd android
+          ./gradlew assembleDebug
+
+      - name: Publicar APK como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: Veyronix-Android-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
